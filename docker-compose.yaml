@@ -17,12 +17,17 @@ services:
     # build: rabbitmq:4.0-alpine
     volumes:
     - rabbitmq:/var/lib/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: roboshop
+      RABBITMQ_DEFAULT_PASS: roboshop123
   mysql:
     image: mysql
     container_name: mysql
     build: ./mysql
     volumes:
     - mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: RoboShop@1
   
 networks:
   default:
