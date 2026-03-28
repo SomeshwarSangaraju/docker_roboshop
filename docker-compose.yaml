@@ -1,0 +1,17 @@
+services:
+  mongodb:
+    image: mongodb
+    container_name: mongodb
+    build: ./mongodb
+    volumes:
+    - mongodb:/data/db
+  
+networks:
+  default:
+    driver: bridge
+    external: false
+    name: expense
+
+volumes:
+  mongodb:
+  
