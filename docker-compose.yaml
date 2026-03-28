@@ -6,15 +6,15 @@ services:
     volumes:
     - mongodb:/data/db
   redis:
-    image: redis:7-alpine
+    image: redis
     container_name: redis
-    # build: redis:7-alpine
+    build: redis:7-alpine
     volumes:
     - redis:/data
   rabbitmq:
-    image: rabbitmq:4.0-alpine
+    image: rabbitmq
     container_name: rabbitmq
-    # build: rabbitmq:4.0-alpine
+    build: rabbitmq:4.0-alpine
     volumes:
     - rabbitmq:/var/lib/rabbitmq
     environment:
@@ -28,6 +28,52 @@ services:
     - mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: RoboShop@1
+  catalogue:
+    image: catalogue
+    container_name: catalogue
+    build: ./catalogue
+    depends_on:
+    - mongodb
+  user:
+    image: user
+    container_name: user
+    build: ./user
+    depends_on:
+    - mongodb
+    - redis
+  cart:
+    image: cart
+    container_name: cart
+    build: ./cart
+    depends_on:
+    - catalogue
+    - redis
+  shipping:
+    image: shipping
+    container_name: shipping
+    build: ./shipping
+    depends_on:
+    - mysql
+  payment:
+    image: payment
+    container_name: payment
+    build: ./payment
+    depends_on:
+    - rabbitmq
+    - user
+    - cart
+  frontend:
+    image: frontend
+    container_name: frontend
+    build: ./frontend
+    ports:
+    - "80:80"
+    depends_on:
+    - catalogue
+    - user
+    - cart
+    - shipping
+    - payment
   
 networks:
   default:
