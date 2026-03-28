@@ -6,15 +6,15 @@ services:
     volumes:
     - mongodb:/data/db
   redis:
-    image: redis
+    image: redis:7-alpine
     container_name: redis
-    build: redis:7-alpine
+    # build: redis:7-alpine
     volumes:
     - redis:/data
   rabbitmq:
-    image: rabbitmq
+    image: rabbitmq:4.0-alpine
     container_name: rabbitmq
-    build: rabbitmq:4.0-alpine
+    # build: rabbitmq:4.0-alpine
     volumes:
     - rabbitmq:/var/lib/rabbitmq
   mysql:
