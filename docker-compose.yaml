@@ -5,6 +5,24 @@ services:
     build: ./mongodb
     volumes:
     - mongodb:/data/db
+  redis:
+    image: redis
+    container_name: redis
+    build: redis:7-alpine
+    volumes:
+    - redis:/data
+  rabbitmq:
+    image: rabbitmq
+    container_name: rabbitmq
+    build: rabbitmq:4.0-alpine
+    volumes:
+    - rabbitmq:/var/lib/rabbitmq
+  mysql:
+    image: mysql
+    container_name: mysql
+    build: ./mysql
+    volumes:
+    - mysql:/var/lib/mysql
   
 networks:
   default:
@@ -14,4 +32,6 @@ networks:
 
 volumes:
   mongodb:
-  
+  redis:
+  rabbitmq:
+  mysql:
