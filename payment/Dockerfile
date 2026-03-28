@@ -1,8 +1,8 @@
 FROM python:3.10-alpine3.22
 WORKDIR /opt
 COPY *.py .
-COPY .ini .
-COPY .txt .
+COPY *.ini .
+COPY *.txt .
 RUN pip3 install -r requirements.txt
 ENV CART_HOST="cart"
 ENV CART_PORT="8080"

@@ -1,7 +1,7 @@
 FROM node:20-trixie
 WORKDIR /opt
 COPY package.json .
-COPY .js .
+COPY *.js .
 RUN npm install
 ENV REDIS_HOST="redis"
 ENV CATALOGUE_HOST="catalogue"
