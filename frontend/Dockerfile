@@ -1,4 +1,4 @@
-FROM nginx:1.24.0-alpine3.17
+FROM nginx:1.24.0-perl
 EXPOSE 80
 RUN rm -rf /usr/share/nginx/html/index.html
 RUN rm -rf /etc/nginx/nginx.conf

@@ -1,14 +1,14 @@
-FROM python:3.10-alpine3.22
-RUN apk add --no-cache \
-    gcc \
-    g++ \
-    musl-dev \
-    libffi-dev \
-    openssl-dev \
-    python3-dev \
-    linux-headers \
-    make \
-    curl
+FROM python:3.10-trixie
+# RUN apk add --no-cache \
+#     gcc \
+#     g++ \
+#     musl-dev \
+#     libffi-dev \
+#     openssl-dev \
+#     python3-dev \
+#     linux-headers \
+#     make \
+#     curl
 WORKDIR /opt
 COPY *.py .
 COPY *.ini .
