@@ -1,18 +1,9 @@
-FROM python:3.10-trixie
-# RUN apk add --no-cache \
-#     gcc \
-#     g++ \
-#     musl-dev \
-#     libffi-dev \
-#     openssl-dev \
-#     python3-dev \
-#     linux-headers \
-#     make \
-#     curl
-WORKDIR /opt
+FROM python:3.9
+WORKDIR /opt/server
+EXPOSE 8080
 COPY *.py .
 COPY *.ini .
-COPY *.txt .
+COPY requirements.txt .
 RUN pip3 install -r requirements.txt
 ENV CART_HOST="cart"
 ENV CART_PORT="8080"
